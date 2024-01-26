@@ -1,0 +1,11 @@
+FROM mysql:8.0
+
+WORKDIR /DWG/db 
+COPY ./db/ /docker-entrypoint-initdb.d/
+COPY db/setup.sh .
+COPY db/temporada.sql .
+RUN pwd && echo ""
+RUN ls -lisa && echo ""
+RUN ./setup.sh
+EXPOSE 80
+CMD npm start

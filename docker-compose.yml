@@ -1,0 +1,31 @@
+version: '3.7'
+
+services:
+  dwg:
+    image: "node:8"
+    command: "npm start"
+    ports:
+      - 8080:3306
+    working_dir: /dwg
+    volumes:
+      - ./:/dwg
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: secret
+      MYSQL_DB: temporada
+
+
+  mysql:
+    image: mysql:8
+    volumes:
+      - dwg-mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: temporada
+    ports:
+      - 3307:3306
+
+volumes:
+  dwg-mysql-data:
+   
