@@ -1,11 +1,11 @@
 'use strict';
 
-var mysql = require('mysql');
+var mysql = require('mysql2');
 
 var con = mysql.createConnection({
-  host: "localhost",
+  host: "mysql",
   user: "root",
-  port: 3307, 
+  port: 3306, 
   password: "secret",
   database: "temporada"
 });
@@ -17,5 +17,11 @@ con.connect(function(err) {
 }
 console.log('Database connection active. ');
 });
+
+con.on('error', function(err) {
+  console.loh('Database error: ', err);
+} 
+);
+
 
 module.exports = con;

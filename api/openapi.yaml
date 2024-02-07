@@ -4,7 +4,6 @@ info:
   description: Aqui vai se poder fazer um controlo de uma Jornada de futebol
   contact:
     name: ""
-    email: 
   version: 0.0.1
 servers:
 - url: http://localhost:8080

@@ -2,30 +2,32 @@ version: '3.7'
 
 services:
   dwg:
-    image: "node:8"
+    image: "node:18"
     command: "npm start"
     ports:
-      - 8080:3306
-    working_dir: /dwg
+      - 8080:8080
+    working_dir: /usr/dwg
     volumes:
-      - ./:/dwg
+      - .:/usr/dwg
+      - ./node_modules:/usr/dwg/node_modules
     environment:
       MYSQL_HOST: mysql
       MYSQL_USER: root
       MYSQL_PASSWORD: secret
       MYSQL_DB: temporada
-
+    depends_on:
+      - mysql
 
   mysql:
     image: mysql:8
     volumes:
       - dwg-mysql-data:/var/lib/mysql
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/schema.sql
     environment:
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_DATABASE: temporada
-    ports:
-      - 3307:3306
-
+    ports: 
+     - 3307:3306
 volumes:
   dwg-mysql-data:
    
