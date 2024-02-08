@@ -199,4 +199,4 @@ INSERT INTO `Ocurrencia` (num_faltas, num_golos, num_cartao , substituicao, id_t
 (5,0,1,'nao',1,8,1,6),
 (5,1,1,'sim',2,9,1,2),
 (5,0,1,'sim',2,1,1,15);
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '12345678'
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'secret'
