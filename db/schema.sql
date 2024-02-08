@@ -1,297 +1,202 @@
-DROP SCHEMA IF EXISTS 'temporada';
+DROP SCHEMA IF EXISTS `temporadas`;
+create schema temporadas;
+use temporadas;
+create table Temporada(
+id int auto_increment primary key,
+nome varchar(50)
 
-create schema 'temporada';
-use 'temporada';
-
-create table temporada(
-"id" int auto_increment primary key,
-"nome" varchar(50),
-"equipa_id" int,
-foreign key ('equipa_id') references 'equipa'('id')
 );
-
-create table equipa(
-'id' int auto_increment primary key,
-'nome' varchar(50));
-
-create table estatisticas (
-'id' int primary key ,
-'golos_feitas' int ,
-'golos_sofridos' int,
-'faltas_sofridas' int,
-'faltas_feitas' int,
-'temporada_id' int references 'temporada'('id'),
-'id_equipa' int references 'equipa'('id')
-);
-
-create table jogador (
-'id' int auto_increment primary key ,
-'nome' nvarchar (50),
-'numero' int,
-'temporada_id' int references 'temporada'('id'),
-'id_plantel' int references 'plantel'('id'),
-'id_equipa' int references 'equipa'('id')
-);
-
-create table jogos (
-'id' int auto_increment primary key ,
-'resultado' varchar (100),
-'temporada_id' int references 'temporada'('id'),
-'equipa_id' int,
-foreign key ('equipa_id') references 'equipa'('id')
-);
-
-create table ocurrencia(
-'id' int primary key  ,
-'num_faltas' int,
-'num_golos' int,
-'num_cartao' int,
-'minutos' float ,
-'substituicao' int,
-'temporada_id' int references 'temporada'('id'),
-'id_equipa' int references 'equipa'('id'),
-'id_jogador' int references 'jogador'('id'),
-'id_jogos' int references 'jogos'('id')
+create table Equipa(
+id int auto_increment primary key,
+nome char(50),
+id_temporada int
 );
 
 
+create table Estatistica (
+id int auto_increment primary key,
+golos_marcados int ,
+golos_sofridos int,
+faltas_sofridas int,
+faltas_feitas int,
+id_temporada int,
+id_equipa int,
+id_jogador int
+);
 
+create table Jogador (
+id int auto_increment primary key ,
+nome nvarchar (50),
+numero int,
+id_equipa int
+);
 
+create table Jogo (
+id int auto_increment primary key ,
+resultado varchar (100),
+id_equipa int
 
+);
 
+create table Ocurrencia(
+id int auto_increment primary key ,
+num_faltas int,
+num_golos int,
+num_cartao int,
+substituicao VARCHAR(3),
+id_temporada int,
+id_equipa int,
+id_jogador int,
+id_jogo int
+);
 
-
-
-
-
-insert into temporada value(1,"Temporada 1",1);
-
-
-insert into equipa values 
+INSERT INTO `Equipa` (id_temporada, nome) VALUES
 (1,'Benfica'),
-(2,'Porto'),
-(3,'Sporting'),
-(4,'Braga'),
-(5,'Boa vista'),
-(6,'Arouca'),
-(7,'Penafiel'),
-(8,'Chaves'),
-(9,'Famalicão');
+(1,'Porto'),
+(1,'Sporting'),
+(1,'SP Braga'),
+(1,'Rio ave'),
+(1,'Famalicao'),
+(1,'Estoril'),
+(1,'Santa Clara'),
+(1,'Arrouca'),
+(1,'Chaves'),
+(1,'Feirrerence'),
+(1,'Leixoes'),
+(1,'Passos Ferreira'),
+(1,'Maritimo'),
+(1,'Nacional');
+INSERT INTO `Estatistica` (golos_marcados, golos_sofridos, faltas_sofridas, faltas_feitas, id_temporada, id_equipa, id_jogador)  VALUES
+(3,1,4,0,1,1,1);
+-- (2,0,7,2,1,2,1),
+-- (2,1,3,2,1,5,1),
+-- (0,1,9,11,1,4,1),
+-- (0,3,0,1,1,3,1),
+-- (1,0,4,1,1,6,1),
+-- (0,0,4,6,1,7,1),
+-- (1,0,4,10,1,8,1),
+-- (0,5,0,0,2,9,1),
+-- (0,1,5,2,10,1);
+INSERT INTO `Temporada` (nome) VALUES ('Temporada 1');
 
-insert into estatisticas values
-(1,20,12,19,18,1,123),
-(2,30,2,11,28,1,456),
-(3,40,23,13,38,1,789),
-(4,40,24,14,48,1,912),
-(5,50,21,15,55,1,934),
-(6,20,11,55,18,1,956),
-(7,10,13,5,15,1,978),
-(8,20,22,59,58,1,990),
-(9,23,43,12,45,1,876);
-
-insert into jogador values 
-(0, 'Dinis',1,1,1,123),
-(0,'Rafa',2,1,1,123),
-(0,'Pedro',3,1,1,123),
-(0,'Carlos',4,1,1,123),
-(0,'Marcos',5,1,1,123),
-(0,'Joao',6,1,1,123),
-(0,'Eclides',7,1,1,123),
-(0,'Lucas',8,1,1,123),
-(0,'Vagner',9,1,1,123),
-(0,'Britof',10,1,1,123),
-(0,'Defu',11,1,1,123),
-(0,'Kafu',12,1,1,123),
-(0, 'fssjkuy',1,1,2,456),
-(0,'trjj',2,1,2,456),
-(0,'yymn',3,1,2,456),
-(0,'Mal',4,1,2,456),
-(0,'son',5,1,2,456),
-(0,'Ales',6,1,2,456),
-(0,'nilson',7,1,2,456),
-(0,'Luc',8,1,2,456),
-(0,'Vaner',9,1,2,456),
-(0,'Briof',10,1,2,456),
-(0,'Deu',11,1,2,456),
-(0,'Kau',12,1,2,456),
-(0, 'ronaldo',1,1,3,789),
-(0,'cristiano',2,1,3,789),
-(0,'pedro',3,1,3,789),
-(0,'Maldi',4,1,3,789),
-(0,'sony',5,1,3,789),
-(0,'Alex',6,1,3,789),
-(0,'ronilson',7,1,3,789),
-(0,'Luci',8,1,3,789),
-(0,'wagner',9,1,3,789),
-(0,'Brisof',10,1,3,789),
-(0,'Deucu',11,1,3,789),
-(0,'Kaulo',12,1,3,789),
-(0, 'naldo',1,1,4,912),
-(0,'cristian',2,1,4,912),
-(0,'pedrinho',3,1,4,912),
-(0,'Mallison',4,1,4,912),
-(0,'everson',5,1,4,912),
-(0,'Alexandre',6,1,4,912),
-(0,'roni',7,1,4,912),
-(0,'Lucia',8,1,4,912),
-(0,'vania',9,1,4,912),
-(0,'latof',10,1,4,912),
-(0,'Deko',11,1,4,912),
-(0,'Kawan',12,1,4,912),
-(0, 'arnaldo',1,1,5,934),
-(0,'crist',2,1,5,934),
-(0,'drinho',3,1,5,934),
-(0,'lison',4,1,5,934),
-(0,'verson',5,1,5,934),
-(0,'xandre',6,1,5,934),
-(0,'veroni',7,1,5,934),
-(0,'Lucki',8,1,5,934),
-(0,'vanir',9,1,5,934),
-(0,'lastnigga',10,1,5,934),
-(0,'Dekorason',11,1,5,934),
-(0,'Kawanis',12,1,5,934),
-(0,'Leo',1,1,6,956),
-(0,'Abrom',2,1,6,956),
-(0,'WILL',3,1,6,956),
-(0,'Bord',4,1,6,956),
-(0,'Lord',5,1,6,956),
-(0,'Mike',6,1,6,956),
-(0,'Vado',7,1,6,956),
-(0,'Pedro',8,1,6,956),
-(0,'Lius',9,1,6,956),
-(0,'Semedo',10,1,6,956),
-(0,'Tavares',11,1,6,956),
-(0,'Furtado',12,1,6,956),
-(0,'Jose',1,1,7,978),
-(0,'Kenny',2,1,7,978),
-(0,'Alves',3,1,7,978),
-(0,'Ablar',4,1,7,978),
-(0,'Russo',5,1,7,978),
-(0,'Bitcho',6,1,7,978),
-(0,'Piter',7,1,7,978),
-(0,'Birrote',8,1,7,978),
-(0,'Catota',9,1,7,978),
-(0,'Ran',10,1,7,978),
-(0,'Mendes',11,1,7,978),
-(0,'derto',12,1,7,978),
-(0,'Cesar',1,1,8,990),
-(0,'Beto',2,1,8,990),
-(0,'Larr',3,1,8,990),
-(0,'Curre',4,1,8,990),
-(0,'Sandro',5,1,8,990),
-(0,'Trito',6,1,8,990),
-(0,'Toto',7,1,8,990),
-(0,'Chaval',8,1,8,990),
-(0,'Enzo',9,1,8,990),
-(0,'Endri',10,1,8,990),
-(0,'Windo',11,1,8,990),
-(0,'Queve',12,1,8,990),
-(0,'Daniel',1,1,9,867),
-(0,'Taqua',2,1,9,867),
-(0,'Cabesa',3,1,9,867),
-(0,'Ny',4,1,9,867),
-(0,'Kneve',5,1,9,867),
-(0,'Domes',6,1,9,867),
-(0,'Gomes',7,1,9,867),
-(0,'Franco',8,1,9,867),
-(0,'Perez',9,1,9,867),
-(0,'Ruan',10,1,9,867),
-(0,'Duvak',11,1,9,867),
-(0,'matic',12,1,9,867);
-
-insert into jogos values 
-
-(0,'vitoria',1,456),
-(0,'vitoria',1,456),
-(0,'vitoria',1,456),
-(0,'vitoria',1,456),
-(0,'vitoria',1,456),
-(0,'derrota',1,456),
-(0,'derrota',1,456),
-(0,'derrota',1,456),
-(0,'derrota',1,456),
-(0,'derrota',1,456),
-(0,'derrota',1,456),
-(0,'vitoria',1,789),
-(0,'derrota',1,789),
-(0,'vitoria',1,789),
-(0,'derrota',1,789),
-(0,'derrota',1,934),
-(0,'derrota',1,789),
-(0,'vitoria',1,789),
-(0,'derrota',1,789),
-(0,'vitoria',1,789),
-(0,'derrota',1,789),
-(0,'vitoria',1,789),
-(0,'derrota',1,789),
-(0,'vitoria',1,912),
-(0,'vitoria',1,912),
-(0,'vitoria',1,912),
-(0,'vitoria',1,912),
-(0,'vitoria',1,912),
-(0,'vitoria',1,912),
-(0,'vitoria',1,912),
-(0,'vitoria',1,912),
-(0,'derrota',1,934),
-(0,'derrota',1,934),
-(0,'derrota',1,934),
-(0,'derrota',1,934),
-(0,'derrota',1,934),
-(0,'derrota',1,934),
-(0,'derrota',1,934),
-(0,'derrota',1,934),
-(0,'derrota',1,934),
-(0,'derrota',1,934),
-(0,'derrota',1,934),
-(0,'derrota',1,934),
-(0,'vitoria',1,956),
-(0,'derrota',1,956),
-(0,'vitoria',1,956),
-(0,'derrota',1,956),
-(0,'vitoria',1,956),
-(0,'derrota',1,956),
-(0,'vitoria',1,956),
-(0,'derrota',1,956),
-(0,'vitoria',1,956),
-(0,'derrota',1,956),
-(0,'vitoria',1,956),
-(0,'derrota',1,956),
-(0,'vitoria',1,956),
-(0,'derrota',1,956),
-(0,'vitoria',1,978),
-(0,'derrota',1,978),
-(0,'vitoria',1,978),
-(0,'derrota',1,978),
-(0,'vitoria',1,978),
-(0,'derrota',1,978),
-(0,'vitoria',1,978),
-(0,'derrota',1,978),
-(0,'vitoria',1,978),
-(0,'derrota',1,978),
-(0,'vitoria',1,978),
-(0,'derrota',1,978),
-(0,'vitoria',1,978),
-(0,'derrota',1,978),
-(0,'vitoria',1,990),
-(0,'derrota',1,990),
-(0,'vitoria',1,990),
-(0,'derrota',1,990),
-(0,'vitoria',1,990),
-(0,'derrota',1,990),
-(0,'vitoria',1,990),
-(0,'derrota',1,990),
-(0,'vitoria',1,990),
-(0,'derrota',1,990),
-(0,'vitoria',1,990),
-(0,'derrota',1,990),
-(0,'vitoria',1,990),
-(0,'derrota',1,990),
-(0,'vitoria',1,990),
-(0,'derrota',1,990),
-(0,'vitoria',1,990),
-(0,'derrota',1,990),
-(0,'vitoria',1,990),
-(0,'derrota',1,990);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('Dinis Ximenes',11,1);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('Carlos Quicanga',17,1);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('Rafael Silva',1,1);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('Cristiano Ronaldo',30,1);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('Paulo Futre',10,1);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('Luis Figo',7,1);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('Grimaldo',6,1);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('Gabriel Jesus',8,1);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('Marega',1,2);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('Maicon',3,2);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('Ederson',33,2);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('Zaidu',10,2);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('Deco',11,2);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('Maradona',7,2);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('Pelé',8,2);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('Artur Lima',1,3);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('Artur Costa',2,3);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('Casimiro Teixeira',3,3);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('Rodrigo Gomes',4,3);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('Carlos de Pina',6,3);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('Jovane Cabral',7,3);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('Ariel Dos Santos',9,3);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('Carlos Andrade',11,3);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('Carlos Pina',1,4);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('Alberto Lopes',2,4);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 1',4,4);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 2',5,4);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 3',6,4);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 4',7,4);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 5',8,4);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 6',1,5);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 7',2,5);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 8',3,5);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 9',4,5);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 10',5,5);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 11',6,5);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 12',7,5);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 13',8,5);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 14',9,5);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 15',10,5);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 16',1,6);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 17',2,6);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 18',3,6);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 19',4,6);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 20',5,6);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 21',6,6);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 22',7,6);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 23',8,6);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 24',9,6);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 25',10,6);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 26',1,6);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 27',2,6);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 28',3,6);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 29',4,6);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 30',5,6);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 31',6,6);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 32',7,6);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 33',8,6);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 34',9,6);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 35',10,6);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 36',1,7);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 37',2,7);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 38',3,7);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 39',4,7);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 40',5,7);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 41',6,7);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 42',7,7);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 43',8,7);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 42',1,8);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 43',1,8);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 44',2,8);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 45',3,8);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 46',4,8);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 47',5,8);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 48',8,8);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 49',77,9);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 50',1,9);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 51',2,9);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 52',3,9);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 53',4,9);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 54',5,9);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 55',1,10);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 56',2,10);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 57',3,10);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 58',4,10);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 59',5,10);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 60',1,10);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 61',1,11);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 62',2,11);
+INSERT INTO `Jogador`  (nome, numero, id_equipa) VALUES ('jogador 63',3,11);
 
 
-
+INSERT INTO `Jogo` (resultado, id_equipa) VALUES
+('3 - 1',1),
+('1 - 3',2),
+('2 - 0',3),
+('0 - 2',4),
+('2 - 2',5),
+('2 - 2',6),
+('5 - 2',8),
+('2 - 5',16),
+('0 - 0',7),
+('0 - 0',9),
+('0 - 0',10),
+('0 - 0',11),
+('1 - 0',12),
+('0 - 1',13),
+('1 - 1',14),
+('1 - 1',15),
+('5 - 1',1),
+('1 - 5',16);
+INSERT INTO `Ocurrencia` (num_faltas, num_golos, num_cartao , substituicao, id_temporada, id_equipa, id_jogador, id_jogo) VALUES
+(0,3,0,'Nao',1,1,1,1),
+(0,3,0,'Nao',1,1,1,1),
+(0,3,0,'Nao',1,1,1,1),
+(3,2,0,'nao',1,11,1,2),
+(3,2,0,'nao',1,4,1,3),
+(5,0,1,'nao',1,8,1,6),
+(5,1,1,'sim',2,9,1,2),
+(5,0,1,'sim',2,1,1,15);
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '12345678'
