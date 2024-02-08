@@ -1,56 +1,68 @@
-DROP SCHEMA IF EXISTS `temporada`;
-create schema temporada;
-use temporada;
+DROP SCHEMA IF EXISTS 'temporada';
+
+create schema 'temporada';
+use 'temporada';
+
 create table temporada(
-id int auto_increment primary key,
-nome varchar(50),
-equipa_id int,
-foreign key (equipa_id) references equipa(id)
+"id" int auto_increment primary key,
+"nome" varchar(50),
+"equipa_id" int,
+foreign key ('equipa_id') references 'equipa'('id')
 );
 
 create table equipa(
-id int primary key auto_increment,
-nome varchar(50));
+'id' int auto_increment primary key,
+'nome' varchar(50));
 
 create table estatisticas (
-id int primary key ,
-golos_feitas int ,
-golos_sofridos int,
-faltas_sofridas int,
-faltas_feitas int,
-temporada_id int references temporada(id),
-id_equipa int references equipa(id)
+'id' int primary key ,
+'golos_feitas' int ,
+'golos_sofridos' int,
+'faltas_sofridas' int,
+'faltas_feitas' int,
+'temporada_id' int references 'temporada'('id'),
+'id_equipa' int references 'equipa'('id')
 );
 
 create table jogador (
-id int auto_increment primary key ,
-nome nvarchar (50),
-numero int,
-temporada_id int references temporada(id),
-id_plantel int references plantel(id),
-id_equipa int references equipa(id)
+'id' int auto_increment primary key ,
+'nome' nvarchar (50),
+'numero' int,
+'temporada_id' int references 'temporada'('id'),
+'id_plantel' int references 'plantel'('id'),
+'id_equipa' int references 'equipa'('id')
 );
 
 create table jogos (
-id int auto_increment primary key ,
-resultado varchar (100),
-temporada_id int references temporada(id),
-equipa_id int,
-foreign key (equipa_id) references equipa(id)
+'id' int auto_increment primary key ,
+'resultado' varchar (100),
+'temporada_id' int references 'temporada'('id'),
+'equipa_id' int,
+foreign key ('equipa_id') references 'equipa'('id')
 );
 
 create table ocurrencia(
-id int primary key  ,
-num_faltas int,
-num_golos int,
-num_cartao int,
-minutos float ,
-substituicao int,
-temporada_id int references temporada(id),
-id_equipa int references equipa(id),
-id_jogador int references jogador(id),
-id_jogos int references jogos(id)
+'id' int primary key  ,
+'num_faltas' int,
+'num_golos' int,
+'num_cartao' int,
+'minutos' float ,
+'substituicao' int,
+'temporada_id' int references 'temporada'('id'),
+'id_equipa' int references 'equipa'('id'),
+'id_jogador' int references 'jogador'('id'),
+'id_jogos' int references 'jogos'('id')
 );
+
+
+
+
+
+
+
+
+
+
 
 insert into temporada value(1,"Temporada 1",1);
 
@@ -78,13 +90,13 @@ insert into estatisticas values
 (9,23,43,12,45,1,876);
 
 insert into jogador values 
-(0, 'Zidane',1,1,1,123),
-(0,'Lenik',2,1,1,123),
-(0,'Bruno',3,1,1,123),
-(0,'Maldini',4,1,1,123),
-(0,'Etson',5,1,1,123),
-(0,'Alessandro',6,1,1,123),
-(0,'Evenilson',7,1,1,123),
+(0, 'Dinis',1,1,1,123),
+(0,'Rafa',2,1,1,123),
+(0,'Pedro',3,1,1,123),
+(0,'Carlos',4,1,1,123),
+(0,'Marcos',5,1,1,123),
+(0,'Joao',6,1,1,123),
+(0,'Eclides',7,1,1,123),
 (0,'Lucas',8,1,1,123),
 (0,'Vagner',9,1,1,123),
 (0,'Britof',10,1,1,123),
@@ -186,18 +198,9 @@ insert into jogador values
 (0,'Ruan',10,1,9,867),
 (0,'Duvak',11,1,9,867),
 (0,'matic',12,1,9,867);
-insert into jogos  values 
--- (0,'vitoria',1,123),
--- (0,'vitoria',1,123),
--- (0,'vitoria',1,123),
--- (0,'vitoria',1,123),
--- (0,'vitoria',1,123),
--- (0,'derrota',1,123),
--- (0,'derrota',1,123),
--- (0,'derrota',1,123),
--- (0,'derrota',1,123),
--- (0,'derrota',1,123),
--- (0,'derrota',1,123),
+
+insert into jogos values 
+
 (0,'vitoria',1,456),
 (0,'vitoria',1,456),
 (0,'vitoria',1,456),

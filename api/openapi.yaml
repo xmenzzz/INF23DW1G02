@@ -27,7 +27,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Temporada'
-                x-content-type: application/json
             application/xml:
               schema:
                 type: array
@@ -36,6 +35,33 @@ paths:
                 items:
                   $ref: '#/components/schemas/Temporada'
       x-swagger-router-controller: TemporadaController
+    post:
+      tags:
+      - TemporadaController
+      summary: Create a new Temporada
+      operationId: createTemporada
+      requestBody:
+        description: A new Temporada to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Temporada'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Temporada'
+      responses:
+        "201":
+          description: Temporada model instance created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Temporada'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Temporada'
+      x-swagger-router-controller: TemporadaController
+
   /Temporada/{id_temporada}:
     get:
       tags:
