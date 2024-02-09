@@ -1,5 +1,6 @@
 'use strict';
 
+var sql = require('../dbconnect.js');
 
 /**
  * Retrieve Jogador
@@ -8,21 +9,16 @@
  **/
 exports.retrieveJogador = function() {
   return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "numero_do_jogador" : 6,
-  "id_jogador" : 0,
-  "nome_do_jogador" : "nome_do_jogador"
-}, {
-  "numero_do_jogador" : 6,
-  "id_jogador" : 0,
-  "nome_do_jogador" : "nome_do_jogador"
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    sql.query("SELECT * FROM jogador",  function (err, res){
+      if (err) {
+        console.log(err)
+        reject(err);
+      }
+      else {
+        console.log(res);
+        resolve(res[0]);
+      }
+    }) 
   });
 }
 
@@ -35,17 +31,31 @@ exports.retrieveJogador = function() {
  **/
 exports.retrieveJogadorId = function(id_jogador) {
   return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "numero_do_jogador" : 6,
-  "id_jogador" : 0,
-  "nome_do_jogador" : "nome_do_jogador"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    sql.query("SELECT * FROM jogador WHERE id = ?", [id_jogador], function (err, res){
+      if (err) {
+        console.log(err)
+        reject(err);
+      }
+      else {
+        console.log(res);
+        resolve(res[0]);
+      }
+    }) 
   });
 }
 
+
+/**
+ * Retrieve Jogador on Temporada
+ *
+ * id_jogador Long 
+ * returns Temporada
+ * Note: This function's implementation heavily depends on your database schema and how jogador and temporada are related.
+ **/
+exports.retrieveJogadorTemporadaId = function(id_jogador) {
+  // Implementation depends on your database schema
+  return new Promise(function(resolve, reject) {
+    // This is a placeholder implementation.
+    resolve("Function implementation depends on database schema.");
+  });
+}
