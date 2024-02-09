@@ -32,7 +32,7 @@ numero int,
 id_equipa int
 );
 
-create table jogo (
+create table jogos (
 id int auto_increment primary key ,
 resultado varchar (100),
 id_equipa int
@@ -172,7 +172,7 @@ INSERT INTO `jogador`  (nome, numero, id_equipa) VALUES ('jogador 62',2,11);
 INSERT INTO `jogador`  (nome, numero, id_equipa) VALUES ('jogador 63',3,11);
 
 
-INSERT INTO `jogo` (resultado, id_equipa) VALUES
+INSERT INTO `jogos` (resultado, id_equipa) VALUES
 ('3 - 1',1),
 ('1 - 3',2),
 ('2 - 0',3),
