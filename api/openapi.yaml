@@ -3,23 +3,23 @@ info:
   title: Jornadas de Futebol
   description: Aqui vai se poder fazer um controlo de uma Jornada de futebol
   contact:
-    name: ""
+    name: ''
   version: 0.0.1
 servers:
-- url: http://localhost:8080
-  description: DWG localhost
-  variables:
-    basePath:
-      default: /
+  - url: 'http://localhost:8080'
+    description: DWG localhost
+    variables:
+      basePath:
+        default: /
 paths:
   /Temporada:
     get:
       tags:
-      - TemporadaController
+        - TemporadaController
       summary: Retrieve Temporada
       operationId: retrieveTemporada
       responses:
-        "200":
+        '200':
           description: Array of Temporada model instances
           content:
             application/json:
@@ -37,7 +37,7 @@ paths:
       x-swagger-router-controller: TemporadaController
     post:
       tags:
-      - TemporadaController
+        - TemporadaController
       summary: Create a new Temporada
       operationId: createTemporada
       requestBody:
@@ -51,7 +51,7 @@ paths:
             schema:
               $ref: '#/components/schemas/Temporada'
       responses:
-        "201":
+        '201':
           description: Temporada model instance created
           content:
             application/json:
@@ -61,43 +61,42 @@ paths:
               schema:
                 $ref: '#/components/schemas/Temporada'
       x-swagger-router-controller: TemporadaController
-
-  /Temporada/{id_temporada}:
+  '/Temporada/{id_temporada}':
     get:
       tags:
-      - TemporadaController
+        - TemporadaController
       summary: Retrieve Temporada by ID
       operationId: retrieveTemporadaId
       parameters:
-      - name: id_temporada
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int64
+        - name: id_temporada
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int64
       responses:
-        "200":
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Temporada'
-        "400":
+        '400':
           description: Bad request
-        "404":
+        '404':
           description: id not found
       x-swagger-router-controller: TemporadaController
   /Equipa:
     get:
       tags:
-      - EquipaController
+        - EquipaController
       summary: Retrieve Equipa
       operationId: retrieveEquipa
       responses:
-        "200":
+        '200':
           description: Array of Equipa model instances
           content:
             application/json:
@@ -114,42 +113,68 @@ paths:
                 items:
                   $ref: '#/components/schemas/Equipa'
       x-swagger-router-controller: EquipaController
-  /Equipa/{id_equipa}:
+    post:
+      tags:
+        - EquipaController
+      summary: Create a new Equipa
+      operationId: createEquipa
+      requestBody:
+        description: A new Equipa to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Equipa'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Equipa'
+      responses:
+        '201':
+          description: Equipa model instance created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Equipa'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Equipa'
+      x-swagger-router-controller: EquipaController
+  '/Equipa/{id_equipa}':
     get:
       tags:
-      - EquipaController
+        - EquipaController
       summary: Retrieve Equipa by ID
       operationId: retrieveEquipaId
       parameters:
-      - name: id_equipa
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int64
+        - name: id_equipa
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int64
       responses:
-        "200":
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Equipa'
-        "400":
+        '400':
           description: Bad request
-        "404":
+        '404':
           description: id not found
       x-swagger-router-controller: EquipaController
   /Estatisticas:
     get:
       tags:
-      - EstatisticasController
+        - EstatisticasController
       summary: Retrieve Estatistica
       operationId: retrieveEstatistica
       responses:
-        "200":
+        '200':
           description: Array of Estatisticas model instances
           content:
             application/json:
@@ -166,42 +191,70 @@ paths:
                 items:
                   $ref: '#/components/schemas/Estatisticas'
       x-swagger-router-controller: EstatisticasController
-  /Estatisticas/{id_estatistica}:
+    post:
+      tags:
+        - EstatisticasController
+      summary: Create a new Estatisticas
+      operationId: createEstatisitcas
+      requestBody:
+        description: A new Estatisticas to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Estatisticas'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Estatisticas'
+      responses:
+        '201':
+          description: Estatisticas model instance created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Estatisticas'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Estatisticas'
+      x-swagger-router-controller: EstatisticasController
+
+      
+  '/Estatisticas/{id_estatistica}':
     get:
       tags:
-      - EstatisticasController
+        - EstatisticasController
       summary: Retrieve Estatisticas by ID
       operationId: retrieveEstatisticaId
       parameters:
-      - name: id_estatistica
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int64
+        - name: id_estatistica
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int64
       responses:
-        "200":
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Estatisticas'
-        "400":
+        '400':
           description: Bad request
-        "404":
+        '404':
           description: id not found
       x-swagger-router-controller: EstatisticasController
   /Jogador:
     get:
       tags:
-      - JogadorController
+        - JogadorController
       summary: Retrieve Jogador
       operationId: retrieveJogador
       responses:
-        "200":
+        '200':
           description: Array of Jogador model instances
           content:
             application/json:
@@ -218,42 +271,42 @@ paths:
                 items:
                   $ref: '#/components/schemas/Jogador'
       x-swagger-router-controller: JogadorController
-  /Jogador/{id_jogador}:
+  '/Jogador/{id_jogador}':
     get:
       tags:
-      - JogadorController
+        - JogadorController
       summary: Retrieve Jogador by ID
       operationId: retrieveJogadorId
       parameters:
-      - name: id_jogador
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int64
+        - name: id_jogador
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int64
       responses:
-        "200":
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Jogador'
-        "400":
+        '400':
           description: Bad request
-        "404":
+        '404':
           description: id not found
       x-swagger-router-controller: JogadorController
   /Jogos:
     get:
       tags:
-      - JogosController
+        - JogosController
       summary: Retrieve Jogos
       operationId: retrieveJogos
       responses:
-        "200":
+        '200':
           description: Array of Jogos model instances
           content:
             application/json:
@@ -270,42 +323,42 @@ paths:
                 items:
                   $ref: '#/components/schemas/Equipa'
       x-swagger-router-controller: JogosController
-  /Jogos/{id_jogo}:
+  '/Jogos/{id_jogo}':
     get:
       tags:
-      - JogosController
+        - JogosController
       summary: Retrieve Jogos by ID
       operationId: retrieveJogosId
       parameters:
-      - name: id_jogo
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int64
+        - name: id_jogo
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int64
       responses:
-        "200":
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Jogos'
-        "400":
+        '400':
           description: Bad request
-        "404":
+        '404':
           description: id not found
       x-swagger-router-controller: JogosController
   /Ocurrencias:
     get:
       tags:
-      - OcurrenciasController
+        - OcurrenciasController
       summary: Retrieve Ocurrencias
       operationId: retrieveOcurrencia
       responses:
-        "200":
+        '200':
           description: Array of Ocurrencias model instances
           content:
             application/json:
@@ -322,60 +375,60 @@ paths:
                 items:
                   $ref: '#/components/schemas/Ocurrencias'
       x-swagger-router-controller: OcurrenciasController
-  /Ocurrencias/{id_ocurrencia}:
+  '/Ocurrencias/{id_ocurrencia}':
     get:
       tags:
-      - OcurrenciasController
+        - OcurrenciasController
       summary: Retrieve Ocurrencias by ID
       operationId: retrieveOcurrenciaId
       parameters:
-      - name: id_ocurrencia
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int64
+        - name: id_ocurrencia
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int64
       responses:
-        "200":
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Ocurrencias'
-        "400":
+        '400':
           description: Bad request
-        "404":
+        '404':
           description: id not found
       x-swagger-router-controller: OcurrenciasController
-  /Equipa/{id_equipa}/Temporada:
+  '/Equipa/{id_equipa}/Temporada':
     get:
       tags:
-      - EquipaController
+        - EquipaController
       summary: Retrieve Equipa on temporada
       operationId: retrieveEquipaTemporadaId
       parameters:
-      - name: id_equipa
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int64
+        - name: id_equipa
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int64
       responses:
-        "200":
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Temporada'
-        "400":
+        '400':
           description: Bad request
-        "404":
+        '404':
           description: id not found
       x-swagger-router-controller: EquipaController
 components:
