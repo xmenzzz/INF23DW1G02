@@ -1,0 +1,312 @@
+{
+	"info": {
+		"_postman_id": "22e67e05-9ae5-4825-9c20-633c10e5f70a",
+		"name": "D1-M2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32581501",
+		"_collection_link": "https://galactic-capsule-354164.postman.co/workspace/DW1~84b8082e-73d5-4183-b8e6-62e4fb732695/collection/23970573-22e67e05-9ae5-4825-9c20-633c10e5f70a?action=share&source=collection_link&creator=32581501"
+	},
+	"item": [
+		{
+			"name": "API URL",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/docs",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"docs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JOGADOR",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/jogador",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"jogador"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JOGADOR ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/jogador/{id_jogador}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"jogador",
+						"{id_jogador}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EQUIPA",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/equipa",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"equipa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EQUIPA on TEMPORADA",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/equipa/{id_equipa}/Temporada",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"equipa",
+						"{id_equipa}",
+						"Temporada"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EQUIPA  ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/equipa/{id_equipa}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"equipa",
+						"{id_equipa}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EQUIPA  ID",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/equipa/{id_equipa}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"equipa",
+						"{id_equipa}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ESTATISTICAS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/Estatisticas",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"Estatisticas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ESTATISTICAS ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/Estatisticas",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"Estatisticas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JOGOS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/jogos",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"jogos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JOGOS ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/jogos/7",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"jogos",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OCURRENCIAS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/Ocurrencias",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"Ocurrencias"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OCURRENCIAS ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/Ocurrencias",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"Ocurrencias"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TEMPORADA",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/Temporada",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"Temporada"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TEMPORADA ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/Temporada/{id_temporada}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"Temporada",
+						"{id_temporada}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "localhost:8080",
+			"type": "string"
+		}
+	]
+}
