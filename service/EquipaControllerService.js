@@ -67,3 +67,17 @@ exports.retrieveEquipaTemporadaId = function(id_equipa) {
   });
 }
 
+exports.createEquipa = function(body) {
+  return new Promise(function(resolve, reject) {
+    sql.query("INSERT INTO equipa (nome) Values(?)", [body.nome], function (err, res) {
+      if (err) {
+        console.log(err);
+        reject(err);
+      }
+      else {
+        console.log(res.insertId);
+        resolve(res.insertId);
+      }
+    });
+  });
+}
